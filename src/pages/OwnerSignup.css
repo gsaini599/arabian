@@ -1,0 +1,318 @@
+.owner-signup {
+  min-height: 100vh;
+  background: var(--bg-gray);
+  padding: 40px 0 80px;
+}
+
+.signup-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.signup-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.signup-header h1 {
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 16px;
+}
+
+.score-badge {
+  display: inline-block;
+  padding: 8px 24px;
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+  color: var(--text-dark);
+  border-radius: 24px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.signup-progress {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  opacity: 0.4;
+  transition: all 0.3s ease;
+}
+
+.progress-step.active,
+.progress-step.completed {
+  opacity: 1;
+}
+
+.progress-step-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--bg-light);
+  border: 3px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.progress-step.active .progress-step-icon {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--text-dark);
+  transform: scale(1.1);
+}
+
+.progress-step.completed .progress-step-icon {
+  background: var(--success);
+  border-color: var(--success);
+  color: white;
+}
+
+.progress-step-title {
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.progress-step.active .progress-step-title {
+  color: var(--text-dark);
+}
+
+.signup-form {
+  background: white;
+  padding: 48px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.form-section h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.section-description {
+  color: var(--text-muted);
+  margin-bottom: 32px;
+  font-size: 16px;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.form-hint {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.amenity-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: var(--bg-gray);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.amenity-checkbox:hover {
+  background: var(--border-color);
+}
+
+.amenity-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.photo-upload-area {
+  border: 3px dashed var(--border-color);
+  border-radius: 12px;
+  padding: 48px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.photo-upload-area:hover {
+  border-color: var(--accent-color);
+  background: var(--bg-gray);
+}
+
+.upload-label {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-muted);
+}
+
+.upload-label svg {
+  color: var(--accent-color);
+}
+
+.upload-label p {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.uploaded-photos {
+  margin-top: 16px;
+  padding: 12px;
+  background: var(--bg-gray);
+  border-radius: 8px;
+}
+
+.uploaded-photos p {
+  margin: 0;
+  color: var(--success);
+  font-weight: 600;
+}
+
+.pilot-program-info {
+  background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.pilot-program-info h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 16px;
+}
+
+.pilot-program-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.pilot-program-info ul li {
+  padding: 8px 0;
+  padding-left: 28px;
+  position: relative;
+  color: var(--text-dark);
+}
+
+.pilot-program-info ul li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--success);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.agreement-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.agreement-checkbox input[type="checkbox"] {
+  margin-top: 4px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.agreement-checkbox span {
+  font-size: 14px;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+.form-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 2px solid var(--border-color);
+}
+
+.form-navigation .btn {
+  min-width: 140px;
+}
+
+.form-navigation .btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .owner-signup {
+    padding: 20px 0 40px;
+  }
+  
+  .signup-header h1 {
+    font-size: 28px;
+  }
+  
+  .signup-progress {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .signup-form {
+    padding: 24px;
+  }
+  
+  .form-section h2 {
+    font-size: 24px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .amenities-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-navigation {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+  
+  .form-navigation .btn {
+    width: 100%;
+  }
+}
+
