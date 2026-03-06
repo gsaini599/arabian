@@ -16,6 +16,7 @@ import BDDashboard from './pages/dashboards/BDDashboard';
 import BookingPage from './pages/BookingPage';
 import Login from './pages/Login';
 import './App.css';
+import './responsive.css';
 
 function App() {
   return (

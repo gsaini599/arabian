@@ -2,6 +2,25 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Base font size for mobile first approach */
+html {
+  font-size: 14px;
+}
+
+/* Scale up for larger screens */
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Prevent horizontal scroll */
+body {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 :root {
@@ -29,24 +48,69 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: var(--text-dark);
   line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .App {
-  min-height: 100vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* Common button styles */
 .btn {
-  padding: 12px 32px;
+  padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
   display: inline-block;
   text-align: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  touch-action: manipulation;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  
+  /* For mobile */
+  width: 100%;
+  max-width: 100%;
+  margin: 0.5rem 0;
+  
+  /* For tablets and up */
+  @media (min-width: 768px) {
+    width: auto;
+    max-width: none;
+    margin: 0.5rem;
+  }
+  
+  /* Disabled state */
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  /* Focus state */
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+  }
+  
+  /* Active state */
+  &:active {
+    transform: translateY(1px);
+  }
 }
 
 .btn-primary {
