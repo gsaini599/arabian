@@ -22,6 +22,7 @@ const Login = () => {
   };
 
   const handleGoogleLogin = async () => {
+    console.log('Google login clicked');
     // Show loading state
     const button = document.querySelector('.social-btn.google');
     if (button) {
@@ -43,6 +44,7 @@ const Login = () => {
       verified: true
     };
     
+    console.log('Google user data:', googleUserData);
     localStorage.setItem('user', JSON.stringify(googleUserData));
     localStorage.setItem('token', `google-oauth-${googleUserData.id}`);
     localStorage.setItem('authProvider', 'google');
@@ -111,6 +113,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('Form submitted with:', { email: formData.email, userType });
     
     // For demo purposes - allow any credentials
     if (!formData.email || !formData.password) {
@@ -139,6 +142,7 @@ const Login = () => {
       });
 
       const data = await response.json();
+      console.log('API response:', data);
 
       if (data.success) {
         // Store user info and token in localStorage
@@ -171,6 +175,7 @@ const Login = () => {
           provider: 'email'
         };
         
+        console.log('Using dummy login:', dummyUser);
         localStorage.setItem('user', JSON.stringify(dummyUser));
         localStorage.setItem('token', 'demo-token-' + dummyUser.id);
         
@@ -201,6 +206,7 @@ const Login = () => {
         provider: 'email'
       };
       
+      console.log('Using fallback dummy login:', dummyUser);
       localStorage.setItem('user', JSON.stringify(dummyUser));
       localStorage.setItem('token', 'demo-token-' + dummyUser.id);
       

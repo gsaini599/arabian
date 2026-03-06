@@ -74,7 +74,7 @@
   to { transform: rotate(360deg); }
 }
 
-.logo span {
+.landing-page .logo span {
   background: linear-gradient(135deg, #ffffff 0%, #d4af37 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

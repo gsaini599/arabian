@@ -43,6 +43,45 @@
   color: var(--accent-color);
 }
 
+/* Logo Styles */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  font-size: 24px;
+  color: var(--accent-color);
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-dark) !important;
+  text-decoration: none;
+  opacity: 1 !important;
+  visibility: visible !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: var(--text-dark) !important;
+  background-clip: unset !important;
+}
+
+/* More specific selector to override global styles */
+.owner-dashboard .logo .logo-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-dark) !important;
+  text-decoration: none;
+  opacity: 1 !important;
+  visibility: visible !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: var(--text-dark) !important;
+  background-clip: unset !important;
+}
+
 .welcome-banner {
   background: linear-gradient(135deg, #d4af37, #b8941f);
   padding: 24px;
