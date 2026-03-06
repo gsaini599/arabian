@@ -21,24 +21,92 @@ const Login = () => {
     });
   };
 
-  const handleGoogleLogin = () => {
+  const handleGoogleLogin = async () => {
+    // Show loading state
+    const button = document.querySelector('.social-btn.google');
+    if (button) {
+      button.disabled = true;
+      button.innerHTML = '<span class="spinner"></span> Connecting...';
+    }
+
+    // Simulate OAuth flow delay
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
     // Mock Google OAuth - in production, this would use actual Google OAuth
-    const dummyUser = {
-      id: userType === 'owner' ? '1' : '2',
-      email: formData.email || 'user@gmail.com',
+    const googleUserData = {
+      id: `google_${Date.now()}`,
+      email: formData.email || `user${Math.floor(Math.random() * 1000)}@gmail.com`,
+      name: formData.email ? formData.email.split('@')[0] : 'Google User',
+      avatar: `https://picsum.photos/seed/${formData.email || 'google'}/40/40.jpg`,
+      provider: 'google',
       userType: userType,
-      name: userType === 'owner' ? 'Property Owner' : 'Admin User',
-      avatar: 'https://picsum.photos/seed/avatar/40/40.jpg'
+      verified: true
     };
     
-    localStorage.setItem('user', JSON.stringify(dummyUser));
-    localStorage.setItem('token', 'google-demo-token-' + dummyUser.id);
+    localStorage.setItem('user', JSON.stringify(googleUserData));
+    localStorage.setItem('token', `google-oauth-${googleUserData.id}`);
+    localStorage.setItem('authProvider', 'google');
     
-    if (userType === 'owner') {
-      navigate('/owner-dashboard');
-    } else if (userType === 'admin') {
-      navigate('/dashboard/revenue');
+    // Show success message
+    if (button) {
+      button.innerHTML = '✓ Success!';
+      button.style.background = '#10b981';
     }
+
+    // Redirect after brief delay
+    setTimeout(() => {
+      if (userType === 'owner') {
+        navigate('/owner-dashboard');
+      } else if (userType === 'admin') {
+        navigate('/dashboard/revenue');
+      } else {
+        navigate('/home');
+      }
+    }, 1000);
+  };
+
+  const handleMicrosoftLogin = async () => {
+    // Show loading state
+    const button = document.querySelector('.social-btn.microsoft');
+    if (button) {
+      button.disabled = true;
+      button.innerHTML = '<span class="spinner"></span> Connecting...';
+    }
+
+    // Simulate OAuth flow delay
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    // Mock Microsoft OAuth
+    const microsoftUserData = {
+      id: `ms_${Date.now()}`,
+      email: formData.email || `user${Math.floor(Math.random() * 1000)}@outlook.com`,
+      name: formData.email ? formData.email.split('@')[0] : 'Microsoft User',
+      avatar: `https://picsum.photos/seed/${formData.email || 'microsoft'}/40/40.jpg`,
+      provider: 'microsoft',
+      userType: userType,
+      verified: true
+    };
+    
+    localStorage.setItem('user', JSON.stringify(microsoftUserData));
+    localStorage.setItem('token', `ms-oauth-${microsoftUserData.id}`);
+    localStorage.setItem('authProvider', 'microsoft');
+    
+    // Show success message
+    if (button) {
+      button.innerHTML = '✓ Success!';
+      button.style.background = '#10b981';
+    }
+
+    // Redirect after brief delay
+    setTimeout(() => {
+      if (userType === 'owner') {
+        navigate('/owner-dashboard');
+      } else if (userType === 'admin') {
+        navigate('/dashboard/revenue');
+      } else {
+        navigate('/home');
+      }
+    }, 1000);
   };
 
   const handleSubmit = async (e) => {
@@ -48,6 +116,13 @@ const Login = () => {
     if (!formData.email || !formData.password) {
       alert('Please enter email and password');
       return;
+    }
+
+    // Show loading state on submit button
+    const submitBtn = document.querySelector('.submit-btn');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="spinner"></span> Signing In...';
     }
     
     try {
@@ -70,29 +145,49 @@ const Login = () => {
         localStorage.setItem('user', JSON.stringify(data.user));
         localStorage.setItem('token', data.token);
         
-        // Redirect based on user type
-        if (userType === 'owner') {
-          navigate('/owner-dashboard');
-        } else if (userType === 'admin') {
-          navigate('/dashboard/revenue');
+        // Show success
+        if (submitBtn) {
+          submitBtn.innerHTML = '✓ Success!';
+          submitBtn.style.background = '#10b981';
         }
+        
+        // Redirect after brief delay
+        setTimeout(() => {
+          if (userType === 'owner') {
+            navigate('/owner-dashboard');
+          } else if (userType === 'admin') {
+            navigate('/dashboard/revenue');
+          } else {
+            navigate('/home');
+          }
+        }, 1000);
       } else {
         // Fallback to dummy login for demo
         const dummyUser = {
           id: userType === 'owner' ? '1' : '2',
           email: formData.email,
           userType: userType,
-          name: userType === 'owner' ? 'Property Owner' : 'Admin User'
+          name: userType === 'owner' ? 'Property Owner' : 'Admin User',
+          provider: 'email'
         };
         
         localStorage.setItem('user', JSON.stringify(dummyUser));
         localStorage.setItem('token', 'demo-token-' + dummyUser.id);
         
-        if (userType === 'owner') {
-          navigate('/owner-dashboard');
-        } else if (userType === 'admin') {
-          navigate('/dashboard/revenue');
+        if (submitBtn) {
+          submitBtn.innerHTML = '✓ Success!';
+          submitBtn.style.background = '#10b981';
         }
+        
+        setTimeout(() => {
+          if (userType === 'owner') {
+            navigate('/owner-dashboard');
+          } else if (userType === 'admin') {
+            navigate('/dashboard/revenue');
+          } else {
+            navigate('/home');
+          }
+        }, 1000);
       }
     } catch (error) {
       console.error('Login error:', error);
@@ -102,17 +197,27 @@ const Login = () => {
         id: userType === 'owner' ? '1' : '2',
         email: formData.email,
         userType: userType,
-        name: userType === 'owner' ? 'Property Owner' : 'Admin User'
+        name: userType === 'owner' ? 'Property Owner' : 'Admin User',
+        provider: 'email'
       };
       
       localStorage.setItem('user', JSON.stringify(dummyUser));
       localStorage.setItem('token', 'demo-token-' + dummyUser.id);
       
-      if (userType === 'owner') {
-        navigate('/owner-dashboard');
-      } else if (userType === 'admin') {
-        navigate('/dashboard/revenue');
+      if (submitBtn) {
+        submitBtn.innerHTML = '✓ Success!';
+        submitBtn.style.background = '#10b981';
       }
+      
+      setTimeout(() => {
+        if (userType === 'owner') {
+          navigate('/owner-dashboard');
+        } else if (userType === 'admin') {
+          navigate('/dashboard/revenue');
+        } else {
+          navigate('/home');
+        }
+      }, 1000);
     }
   };
 
@@ -293,7 +398,7 @@ const Login = () => {
                 </svg>
                 Google
               </button>
-              <button className="social-btn microsoft">
+              <button className="social-btn microsoft" onClick={handleMicrosoftLogin}>
                 <svg width="20" height="20" viewBox="0 0 24 24">
                   <path fill="#f25022" d="M1 1h10v10H1z"/>
                   <path fill="#00a4ef" d="M13 1h10v10H13z"/>
